@@ -1,0 +1,136 @@
+<html>
+<head>
+	<title>FTL timing app</title>
+	<link rel="stylesheet" href="vue-treeselect.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="header">
+	<h1>FTL timing app</h1>
+	<p class="docs"><a href="readme.html">Read the docs</a> or you’ll screw it up</p>
+</div>
+
+<div class="intro">
+	<p>This app is in public testing. It should work correctly, but I’d like to give other players a chance to verify it.</p>
+
+	<p>During the test period, it’s running the development build of <a href="https://vuejs.org/">Vue</a>. That means you can use the <a href="https://devtools.vuejs.org/">Vue Devtools</a> to inspect the app’s internal state and see the calculations behind the scenes.</p>
+
+	<p>Ask me for help <a href="https://discord.com/invite/0mMV9KdaDtPiS9uR">on Discord</a> if you’d like to do this but don’t know how.</p>
+</div>
+
+<div id="app">
+	<div id="main">
+		<div class="controls">
+			<div class="control-item">
+				<input type="checkbox" id="manning" v-model="manning">
+				<label for="manning">Manning bonus</label>
+			</div>
+		</div>
+
+		<div class="timers">
+			<timer mode="weapon" uid="1"></timer>
+			<timer mode="weapon" uid="2"></timer>
+		</div>
+
+		<timer mode="time" uid="3"></timer>
+	</div>
+
+	<div id="config">
+		<h3 class="first">Ship config</h3>
+
+		<treeselect v-model="ship"
+			@input="setStartingConditions($event)"
+			id="shipSelection"
+			:options="shipOptions"
+			:disable-branch-nodes="true"
+			:max-height="400"
+			:disable-fuzzy-matching="true"
+			:clearable="false"
+			placeholder="Select ship">
+		</treeselect>
+
+		<div>
+			<input type="number" id="O2" min="0" max="100" v-model.number="visibleStartingOxygen">
+			<label for="O2">Starting O2</label>
+		</div>
+
+		<div>
+			<input type="number" id="prevented" min="0" :max="totalRooms" v-model.number="preVentedRooms">
+			<label for="prevented">Pre-vented rooms</label>
+		</div>
+
+		<div>
+			<input type="number" id="vented" min="0" :max="totalRooms" v-model.number="ventedRooms">
+			<label for="vented">Total vented rooms</label>
+		</div>
+
+		<h3>Crew selection</h3>
+
+		<div class="control-item">
+			<input type="checkbox" id="pheromones" v-model="pheromones">
+			<label for="pheromones">Mantis Pheromones</label>
+		</div>
+
+		<treeselect v-model="crew"
+			id="crewSelection"
+			:options="crewOptions"
+			:disable-branch-nodes="true"
+			:max-height="400"
+			:disable-fuzzy-matching="true"
+			:clearable="false">
+		</treeselect>
+
+		<h3>Crew speed values</h3>
+
+		<p class="crewSpeedControls">
+			<button @click="toggleValues()">{{ showValuesButtonText }}</button>
+			<button @click="resetCrewSpeed()" v-show="!usingDefaults">Reset to defaults</button>
+			<span v-show="usingDefaults">Default values in use</span>
+		</p>
+
+		<div v-show="showValues">
+			<div>
+				<input @input="useTilesPerSecond" type="number" id="tileSpeed" v-model.number="crewSettings.tilesPerSecond" min="2.17" max="2.28" step="0.01">
+				<label for="tileSpeed">Tiles per second</label>
+			</div>
+
+			<div>
+				<input @input="useSecondsPerTile($event)" type="number" id="speedTile" v-model.number="crewSettings.secondsPerTile" min="0.438" max="0.46" step="0.001">
+				<label for="speedTile">Seconds per tile</label>
+			</div>
+
+			<div>
+				<input type="number" id="pheromonesBonus" v-model.number="crewSettings.pheromones" min="22" max="28" step="1">
+				<label for="pheromonesBonus">Pheromones %</label>
+			</div>
+
+			<div>
+				<input type="number" id="mantis" v-model.number="crewSettings.mantis" min="140" max="160" step="1">
+				<label for="mantis">Mantis %</label>
+			</div>
+
+			<div>
+				<input type="number" id="rock" v-model.number="crewSettings.rock" min="40" max="60" step="1">
+				<label for="rock">Rock %</label>
+			</div>
+
+			<div>
+				<input type="number" id="lanius" v-model.number="crewSettings.lanius" min="75" max="95" step="1">
+				<label for="lanius">Lanius %</label>
+			</div>
+
+			<div>
+				<input type="number" id="crystal" v-model.number="crewSettings.crystal" min="70" max="90" step="1">
+				<label for="crystal">Crystal %</label>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="vue-dev.js"></script>
+<script src="vue-treeselect-0.4.js"></script>
+<script src="timer.js"></script>
+
+</body>
+</html>

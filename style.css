@@ -1,0 +1,175 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* 
+	https://twitter.com/heydonworks/status/1084856193795919874
+*/
+body {
+	padding: 1em;
+	max-width: 60em;
+	margin: 0 auto;
+	font-family: "Open Sans";
+	color: white;
+	background: #222;
+}
+body.docs {
+	max-width: 40em;
+}
+#app {
+	margin-top: 0;
+	display: flex;
+	gap: 2em;
+	flex-wrap: wrap;
+}
+#app > * {
+	margin: var(--margin);
+}
+#main {
+	margin-top: 0;
+}
+#config {
+	max-width: 20em;
+	padding: 0.5em 2em;
+	/* background: #333; */
+	border-left: 1px dotted #666;
+}
+h2, h3 {
+	margin-top: 2em;
+}
+h3:first-child {
+	margin-top: 0;
+}
+.header {
+	display: flex;
+	gap: 2em;
+	align-items: baseline;
+}
+
+.timers {
+	display: flex;
+}
+.timers > * {
+	margin-left: 1.5em;
+}
+.timers > :first-child {
+	margin-left: 0;
+}
+.timers-selection {
+	max-width: 50em;
+	justify-content: space-between;
+}
+
+.timers-selection > * {
+	margin-bottom: 1em;
+}
+
+.intro {
+	border-left: 4px solid white;
+	padding: 0.25em 1em;
+	background: #333;
+}
+
+.bigOr {
+	color: #999;
+	font-weight: bold;
+}
+.arbitrary-time {
+	margin-top: 3em;
+}
+a {
+	color: white !important;
+}
+
+.result {
+	margin-top: 1em;
+}
+.result p {
+	font-size: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+.result span {
+	font-size: 1.7em;
+}
+.reset {
+	background: #333;
+}
+.controls {
+	margin-top: 2em;
+	display: flex;
+}
+.control-item {
+	display: block;
+	margin-bottom: 1em;
+	margin-right: 2em;
+}
+.radio-group .control-item {
+	margin-left: 1em;
+}
+input[type=checkbox], input[type=radio] {
+    transform: scale(1.5);
+}
+input[type=number] {
+	width: 4em;
+	margin-top: 0.5em;
+	margin-right: 0.25em;
+	font-size: 120%;
+	color: white;
+	background: #333;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 3px;
+}
+label + input[type=number] {
+	margin-left: 0.25em;
+}
+button {
+	color: #ddd;
+	background: #333;
+	border: 2px solid #ddd;
+	border-radius: 4px;
+	padding: 0.5em;
+	margin-right: 0.25em;
+}
+.crewSpeedControls {
+	margin-top: -1em;
+}
+
+
+/* Vue-treeselect overrides */
+
+.vue-treeselect {
+	width: 15em;
+}
+.vue-treeselect__placeholder {
+	color: #ddd;
+}
+.vue-treeselect__single-value {
+	color: white !important;
+	font-weight: bold !important;
+}
+.vue-treeselect input {
+	color: white;
+}
+.vue-treeselect,
+.vue-treeselect__single-value,
+.vue-treeselect__control,
+.vue-treeselect__menu,
+.vue-treeselect__tip {
+	color: white !important;
+	background: #333 !important;
+}
+.vue-treeselect__option--highlight {
+	background: #222 !important;
+}
+.vue-treeselect__option--selected {
+	background: #111 !important;
+}
+.vue-treeselect__control-arrow,
+.vue-treeselect__option-arrow {
+	color: #fff !important;
+}

@@ -1,0 +1,106 @@
+<html>
+<head>
+	<title>Documentation | FTL timing</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="docs">
+	<h1>Documentation</h1>
+
+	<p><a href="index.html">FTL timing</a> > documentation</p>
+
+	<div class="intro">
+		<p>You can use crew movement to measure time precisely.<br>
+		You can also use oxygen levels, with a little crew movement at the end.</p>
+	
+		<p>A major application of this is timing a weapons toggle on Stealth B.<br>
+	</div>
+
+	<h2>Entering time</h2>
+
+	<p>There are two weapon-timing slots. You can select a weapon from the drop-down list. The list is searchable: just start typing!</p>
+
+	<p>You can also specify whether the enemy ship is manning its weapons. Remember that Auto-ships get the manning bonus.</p>
+
+	<p>Each weapon slot lets you add <strong>your</strong> cloaking time. For example, if you want to cloak before a Mini Beam, add 10 seconds cloak to the Mini Beam slot.</p>
+
+	<p>Behind the scenes, the app will calculate the correct amount of time to measure, taking into account the weapon cooldown, manning bonus, and cloak delay.</p>
+
+	<p>There is also one slot for entering an arbitrary amount of time.</p>
+
+	<h2>The results</h2>
+
+	<p>When you’ve chosen the time to measure, the app will give you two different ways for measuring it:</p>
+
+	<ul>
+		<li>Crew movement &mdash; a “full treadmill”</li>
+		<li>Dropping oxygen, then a little crew movement</li>
+	</ul>
+
+	<p>For the full treadmill, you walk a crew back-and-forth for the number of tiles given.</p>
+
+	<p>For the oxygen timing, you wait until O2 drops to the given percentage, and then walk a crew the small distance given.</p>
+
+	<h2>The crew settings</h2>
+
+	<p>You can select what type of crew you are moving. You can also add Mantis Pheromones.</p>
+
+	<p>You can tweak the values used for crew speed. You can set this in tiles per second, or seconds per tile. You can also tweak the multipliers for different races and Pheromones.</p>
+
+	<p>The default settings are what work best for me on my setup. Any changes to these values will be saved in your browser for future sessions, but you can always reset them to the defaults too.</p>
+
+
+	<h2>The oxygen settings</h2>
+
+	<p>The app needs to know the starting oxygen level on your ship, and how many rooms you are going to vent when the fight starts. Put this information in the “ship config” area.</p>
+
+	<p>At the start of the fight, you must immediately turn oxygen off, and any rooms that you vent much be <strong>fully</strong> vented before the enemy weapons fire.</p>
+
+	<p>By doing this, the app will know the O2 level in the remaining rooms. It’s whatever it started at, minus the steady drop of 1.2% per second.</p>
+
+	<p>Knowing this, and knowing how many rooms are vented, the app can calculate the O2 number that will be displayed by the game.</p>
+
+	<p>To make this work, you’ll need to prepare your ship O2 on the previous jump. Get the non-vented rooms to 100% O2. After that, you can either jump at 100% or switch off O2 and let it drop.</p>
+
+	<p>If you let it drop, you must come <strong>down</strong> from 100%, and pause/jump the moment it hits your target level. For example, if you start at 100% and drop to 75%, your actual O2 level is 75.5%.</p>
+
+	<p>The app accounts for this. When you put 75%, it actually sets the number to 75.5%.</p>
+
+	<p>However, if you came <strong>up</strong> from 74% to 75%, your actual O2 level would be 74.5%. So you would be a percent off, making the timing inaccurate.</p>
+
+	<p>You might be jumping with some rooms already vented, for example if they contain a Lanius. You must tell the app how many rooms start vented, because this lets it calculate the O2 level in the <em>other</em> rooms.</p>
+
+	<p>Different ships have different numbers of rooms, which is why you also have to tell the app what ship you’re playing.</p>
+	
+	<p>The default settings are:</p>
+	
+	<ul>
+		<li>Stealth B</li>
+		<li>75% starting O2</li>
+		<li>No rooms vented initially</li>
+		<li>4 rooms vented when the fight starts</p>
+	</ul>
+
+	<p>What this looks like in practice is that on the previous jump, I let the ship fully reoxygenate. Then I switch off O2 and let it drop to 75% (actually 75.5%). Then I jump. When the fight starts, I leave O2 off and vent the 4 empty rooms at the top off the ship.</p>
+
+	<p>Note that O2 doesn’t change at all during a jump.</p>
+
+	<h2>Things that can go wrong</h2>
+
+	<p>Remember these are the <strong>exact</strong> calculations: there is no “padding”, so if you’re timing a weapons toggle you should do it very slightly earlier.</p>
+
+	<p>Crew speed can vary depending on how you move them. Crew lose a frame of movement with every move order, so plan ahead and avoid unnecessary move orders. If you are making a long movement, don’t break it up into many tiny pieces.</p>
+
+	<p>Crew speed varies with the type of movement. I’ve found that walking in circles doesn’t work well for me. I recommend walking back-and-forth. For example, on Stealth B, my normal treadmill path is from engines to the empty room at the bottom, and back again, and then partway, etc.</p>
+
+	<p>Crew speed also varies with your frame rate. I have the “frame limit” option on, which locks my game to 60 FPS. If you have unlocked framerate, your crew will move very slightly faster.</p>
+
+	<h2>Why not use a stopwatch app instead?</h2>
+
+	<p>I don’t allow myself to use external timers, because I feel it takes away a skill-based element of the game. Knowing the exact passage of time is a significant advantage.</p>
+
+	<p>If you feel differently, then go ahead. I’m not your dad.
+		
+	<p>For testing purposes I use Xnote Stopwatch, bound to both pause keys.</p>
+</body>
+</html>
